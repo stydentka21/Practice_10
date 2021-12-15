@@ -1,0 +1,77 @@
+Задание 1 
+
+def fib(n):
+    if (n==0 or n==1):
+        return n
+    else:
+        return fib(n-2)+fib(n-1)
+x=int(input())
+print(fib(x))
+
+Задание 2
+
+
+                        n
+                       / \
+               n-1             n-2
+               / \             / \
+           n-2     n-3      n-3   n-4
+           / \     / \      / \    / \ 
+         n-3 n-4 n-4 n-5  n-4 n-5 n-5 n-6 
+
+                       
+Нарисовав дерево, мы понимаем, что ассимптотическая сложность алгорима О(2^n). Получается, что кажда ветвь делится еще на две.
+
+Задание 3
+
+fibonacci_cache = {}
+def fibonacci_memo(input_value):
+    if input_value in fibonacci_cache:
+        return fibonacci_cache[input_value]
+    if input_value == 1:
+            value = 1
+    elif input_value == 2:
+            value = 1
+    elif input_value > 2:           
+            value =  fibonacci_memo(input_value -1) + fibonacci_memo(input_value -2)
+    fibonacci_cache[input_value] = value
+    return value
+print(fibonacci_memo(6))
+
+Задание 4
+
+Так как мы каждый раз запоминаем предыдущее значение (уменьшаем вдвое), то сложность алгоритма (n*logn)
+
+Задание 5
+
+def fib_for(n):
+    n1 = 0
+    n2 = 1
+    if n <= 0:
+        return 'Введите число больше 0'
+    elif n == 1:
+        return n1
+    elif n == 2:
+        return n2
+    else:
+        for i in range(2, n):
+            n1, n2 = n2, n1 + n2
+        return n2
+print(fib_for(7))
+
+Задание 6
+
+def InterpolationSearch(lys, val):
+    low = 0
+    high = (len(lys) - 1)
+    while low <= high and val >= lys[low] and val <= lys[high]:
+        index = low + int(((float(high - low) / ( lys[high] - lys[low])) * ( val - lys[low])))
+        if lys[index] == val:
+            return index
+        if lys[index] < val:
+            low = index + 1;
+        else:
+            high = index - 1;
+    return -1
+print(InterpolationSearch([3,5,13,67,68,75,80,98], 5))
+
